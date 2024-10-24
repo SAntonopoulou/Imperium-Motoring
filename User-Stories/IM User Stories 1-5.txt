@@ -1,0 +1,14 @@
+IM-1:
+A CEO of a tech company wants to buy a very expensive sports car, preferably a much newer model, for use during weekends. He logs in to the website using his email and password and opens the search filters. He searches for cars registered as far back as last year, aiming for a price between 100000 and 500000 euros, with a mileage lower than 20000 km. He opens the pages of 5 cars, which contain their various properties such as price and mileage, as well as the contact information of their sellers. He adds all 5 cars to his wishlist, so he can more easily return to their pages and contact their sellers.
+
+IM-2:
+A Client wants to log in to the website with their account. They enter the login page and find two fields, one for their email/username and one for their password. They fill in the required information and they log in with success. Their user icon appears in the top-right of the homepage; clicking it will cause a small drop-down menu to appear, allowing access to various menus such as one for account settings. With their account, they will be able to search for cars and save them to their wishlist, but they will not be able to add, remove, or otherwise alter the information on car pages.
+
+IM-3:
+A Client enters the login page, but does not remember their password. They click an option below the username/password fields called "Forgot Password?" They will be asked to input their email address, which will quickly receive an email from the website, assuming the address is in the website's system. The link in the email will open a webpage on the same website which will allow the client to enter a new password. If they do not remember their username, which is implied to be different from their email address, they can choose to log in with their email address instead.
+
+IM-4:
+An Administrator/Employee wants to log in to the website. They log in with their email and password. Their email is marked in the database as being for an administrator/employee, so on top of having all the privileges and features of a standard Client, they will also gain some additional privileges, such as being able to add, delete, or modify car pages.
+
+IM-5:
+An Administrator/Employee tries to log in, but does not remember their password. They will fill in their email address in the "Forgot Password?" page to reset their password. If they forgot their username, they will use their email address to log in instead.
