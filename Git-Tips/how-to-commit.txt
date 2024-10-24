@@ -1,0 +1,10 @@
+NOTE: git has changed master -> main for the main branch
+
+1. Create a directory on your local system
+2. Change into the directory
+3. git init
+4. git remote add origin https://github.com/SAntonopoulou/Imperium-Motoring
+5. (add your files)
+6. git add . (or you can specify specific files)
+7. git commit -m "[ a message ]"
+8. git push origin main
