@@ -27,9 +27,13 @@ public class UserLogin {
 	 */
 
 	public Object[] loginUser() {
-		Object[] userData = new Object[5];
+		Object[] userData = new Object[6];
 		for (int i = 0; i < userData.length; i++) {
-			userData[i] = 0;
+			if(i == 5) {
+				userData[i] = false;
+			} else {
+				userData[i] = 0;
+			}
 		}
 		userData[0] = false;
 		
@@ -80,6 +84,19 @@ public class UserLogin {
 				userObj[data_position] = results.getString("email");
 				userObj[data_position+1] = results.getString("firstname");
 				userObj[data_position+2] = results.getString("lastname");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		query = "SELECT * FROM admin WHERE id = ?";
+		try (PreparedStatement statement = connection.prepareStatement(query)) {
+			statement.setInt(1, userID);
+			ResultSet results = statement.executeQuery();
+			int data_position = 5;
+			if (results.next()) {
+				if (results.getInt("id") == userID) {
+					userObj[data_position] = true;
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

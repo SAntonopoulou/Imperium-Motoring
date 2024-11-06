@@ -1,9 +1,25 @@
 public class ImperiumMotoring {
 	public static void main(String[] args) {
-		// storing these here is a temporary solution; we will create a configuration file later
-		// the the owners of the shop would then put in their database credentials
-		String dbURL = "[ put database link here ]";
-		String dbUsername = "[ put database username here ]";
-		String dbPassword = "[ put database password here ]";
+		String dbURL = "";
+		String dbUsername = "";
+		String dbPassword = "";
+		
+		Utils utils = new Utils(dbURL, dbUsername, dbPassword);
+		User user = new User();
+		/*
+		// Registration Test
+		UserRegistration userRegistration = new UserRegistration(dbURL, dbUsername, dbPassword);
+		userRegistration.registerUser();
+		*/
+		
+		/*
+		// Login Test
+		if(Utils.loginUser(user)) {
+			System.out.println("You are logged in!");
+			System.out.println("Is Admin: " + user.getAdminStatus());
+		} else {
+			System.out.println("Invalid login.");
+		}
+		*/
 	}
 }

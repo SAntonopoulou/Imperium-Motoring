@@ -11,16 +11,27 @@ import java.io.Console;
 import java.sql.*;
 
 public class User {
-	private final int userID;
+	private int userID;
 	private String email;
 	private String firstname;
 	private String lastname;
+	private boolean isAdmin;
 
-	public User(int userID, String email, String firstname, String lastname) {
+	public User(
+			int userID, 
+			String email, 
+			String firstname, 
+			String lastname, 
+			boolean isAdmin) {
 		this.userID = userID;
 		this.email = email;
 		this.firstname = firstname;
 		this.lastname = lastname;
+		this.isAdmin = isAdmin;
+	}
+
+	public User() {
+		this(0, "false", "false", "false", false);
 	}
 
 	public void deleteUser(String dbURL, String dbUsername, String dbPassword) {
@@ -97,8 +108,20 @@ public class User {
 		}
 	}
 
+	public void setUserID(int updateUserID) {
+		this.userID = updateUserID;
+	}
+
 	public int getUserID(){
 		return this.userID;
+	}
+
+	public void setAdminStatus(boolean isAdmin) {
+		this.isAdmin = isAdmin;
+	}
+
+	public boolean getAdminStatus() {
+		return this.isAdmin;
 	}
 
 	public String getEmail() {
