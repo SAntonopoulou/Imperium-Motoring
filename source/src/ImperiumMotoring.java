@@ -5,9 +5,5 @@ public class ImperiumMotoring {
 		String dbURL = "[ put database link here ]";
 		String dbUsername = "[ put database username here ]";
 		String dbPassword = "[ put database password here ]";
-
-		UserRegistration userRegistration = new UserRegistration(dbURL, dbUsername, dbPassword);
-
-		userRegistration.registerUser();
 	}
 }

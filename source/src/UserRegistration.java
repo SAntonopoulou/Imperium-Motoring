@@ -19,7 +19,9 @@ public class UserRegistration {
 		this.dbUsername = dbUsername;
 		this.dbPassword = dbPassword;
 	}
-
+/* NOTE!!!!!!!!
+ * NEED TO ADD: admin status (false by default)
+ */
 	public void registerUser() {
 		try (Connection connection = DriverManager.getConnection(dbURL, dbUsername, dbPassword)) {
 			Scanner scanner = new Scanner(System.in);

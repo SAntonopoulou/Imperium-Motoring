@@ -21,15 +21,25 @@ public class UserLogin {
 		this.dbPassword = dbPassword;
 	}
 
-	public boolean loginUser() {
-		boolean isLogged = false;
+	/* NOTE!!!!!!!!!
+	 * NEED TO ADD: admin status check
+	 * NEED TO ADD: admin field (false by default)
+	 */
+
+	public Object[] loginUser() {
+		Object[] userData = new Object[5];
+		for (int i = 0; i < userData.length; i++) {
+			userData[i] = 0;
+		}
+		userData[0] = false;
+		
 		try (Connection connection = DriverManager.getConnection(dbURL, dbUsername, dbPassword)) {
 			Scanner scanner = new Scanner(System.in);
 			Console console = System.console();
 
 			if (console == null) {
 				System.out.println("No console available!");
-				return false;
+				return userData;
 			}
 
 			String email, password, db_salt, db_saltPassword, saltPassword;
@@ -47,13 +57,33 @@ public class UserLogin {
 				db_saltPassword = getUserSaltedPasswordFromDB(connection, userID);
 				saltPassword = generateSaltPassword(password, db_salt);
 				if (saltPassword.equals(db_saltPassword)) {
-					isLogged = true;
+					userData[0] = true;
 				}
+				// fill user object with data
+				getUserData(connection, userID, userData);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return isLogged;
+		return userData;
+	}
+	
+	private void getUserData(Connection connection, int userID, Object[] userObj) {
+		userObj[1] = userID;
+		String query = "SELECT * FROM users WHERE id = ?";
+		try (PreparedStatement statement = connection.prepareStatement(query)) {
+			statement.setInt(1, userID);
+			ResultSet results = statement.executeQuery();
+			int data_position = 2;
+			if (results.next()) {
+				// set object details here
+				userObj[data_position] = results.getString("email");
+				userObj[data_position+1] = results.getString("firstname");
+				userObj[data_position+2] = results.getString("lastname");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private int getUserIDFromDB(Connection connection, String email) {
