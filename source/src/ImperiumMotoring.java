@@ -17,9 +17,12 @@ public class ImperiumMotoring {
 		if(Utils.loginUser(user)) {
 			System.out.println("You are logged in!");
 			System.out.println("Is Admin: " + user.getAdminStatus());
+			// Delete User Test
+			//Utils.deleteUser(user);
 		} else {
 			System.out.println("Invalid login.");
 		}
 		*/
+		
 	}
 }

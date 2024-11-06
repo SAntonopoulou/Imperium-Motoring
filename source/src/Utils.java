@@ -36,6 +36,10 @@ public class Utils {
 		return logged;
 	}
 
+	public static void deleteUser(User user) {
+		user.deleteUser(dbURL, dbUsername, dbPassword);
+	}
+
 	private static User createUser(Object[] userData) {
 		return new User(
 				(Integer) userData[1], 

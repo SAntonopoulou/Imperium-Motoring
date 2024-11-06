@@ -37,14 +37,13 @@ public class User {
 	public void deleteUser(String dbURL, String dbUsername, String dbPassword) {
 		try (Connection connection = DriverManager.getConnection(dbURL, dbUsername, dbPassword)) {
 			// delete associated sales from user
-			deleteUserData(connection,"sales", userID);
+			//deleteUserData(connection,"sales", userID);
 			// delete associated reviews from user
-			deleteUserData(connection, "reviews", userID);
+			//deleteUserData(connection, "reviews", userID);
 			// delete associated appointments from user
-			deleteUserData(connection, "appointments",  userID);
+			//deleteUserData(connection, "appointments",  userID);
 			// delete associated password from user
-			deleteUserData(connection, "password",  userID);
-			// delete associated salts from user
+			deleteUserData(connection, "saltpw",  userID); // delete associated salts from user
 			deleteUserData(connection, "salts",  userID);
 			// delete user data from user table
 			deleteUserData(connection, "users", userID);
@@ -55,10 +54,14 @@ public class User {
 	}
 		
 	private void deleteUserData(Connection connection,String table, int userID) {
-		String sqlStatement = "DELETE FROM ? WHERE id = ?";
+		//TableNameValidator validator = new TableNameValidator();
+		if(!DatabaseTablesValidation.isValidTable(table)) {
+			throw new IllegalArgumentException("Invalid table name: " + table);
+		}
+
+		String sqlStatement = "DELETE FROM " + table + " WHERE id = ?";
 		try (PreparedStatement statement = connection.prepareStatement(sqlStatement)) {
-			statement.setString(1, table);
-			statement.setInt(2, userID);
+			statement.setInt(1, userID);
 			statement.executeUpdate();		
 		} catch (SQLException e) {
 			e.printStackTrace();
