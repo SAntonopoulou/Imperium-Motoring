@@ -1,8 +1,8 @@
 public class ImperiumMotoring {
 	public static void main(String[] args) {
-		String dbURL = "jdbc:mysql://impmotordata.santonopoulou.com:3006/impmotor";
-		String dbUsername = "impmotorremote";
-		String dbPassword = "1lwxDYOVDpuzJnEMpt6P8Lzi33mk5R";
+		String dbURL = "";
+		String dbUsername = "";
+		String dbPassword = "";
 		
 		Utils utils = new Utils(dbURL, dbUsername, dbPassword);
 		User user = new User();
