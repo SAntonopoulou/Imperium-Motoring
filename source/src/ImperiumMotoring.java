@@ -1,8 +1,8 @@
 public class ImperiumMotoring {
 	public static void main(String[] args) {
-		String dbURL = "";
-		String dbUsername = "";
-		String dbPassword = "";
+		String dbURL = "https://impmotordata.santonopoulou.com";
+		String dbUsername = "impmotorremote";
+		String dbPassword = "1lwxDYOVDpuzJnEMpt6P8Lzi33mk5R";
 		
 		Utils utils = new Utils(dbURL, dbUsername, dbPassword);
 		User user = new User();
