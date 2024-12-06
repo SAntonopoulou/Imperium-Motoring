@@ -1,5 +1,8 @@
 import Vehicle_Enums.*;
-
+import java.security.SecureRandom;
+import java.util.Base64;
+import org.mindrot.jbcrypt.BCrypt;
+import java.sql.*;
 import java.time.LocalDate;
 
 public class Vehicle {
@@ -20,7 +23,18 @@ public class Vehicle {
     private Transmission transmission;
     private String colour;
     private String interiorColour;
+    private String dbURL;
+    private String dbUsername;
+    private String dbPassword;
+
     //Need to add notes variable when changed to longtext
+    public Vehicle(int ID,String dbURL, String dbUsername, String dbPassword) {
+        this.ID = ID;
+        this.dbURL = dbURL;
+        this.dbUsername = dbUsername;
+        this.dbPassword = dbPassword;
+        queryDatabase(this.dbURL, this.dbUsername, this.dbPassword);
+    }
 
     public Vehicle(int ID, String make, String model, String variant, LocalDate registration, FuelType fuelType, Category category, Drivetrain drivetrain, int price, int mileage, int engineSize, int enginePower, EnginePosition enginePosition, EngineType engineType, Transmission transmission, String colour, String interiorColour) {
         this.ID = ID;
@@ -40,6 +54,43 @@ public class Vehicle {
         this.transmission = transmission;
         this.colour = colour;
         this.interiorColour = interiorColour;
+    }
+    private void queryDatabase(String dbURL, String dbUsername, String dbPassword){
+        String query = "SELECT * FROM vehicles WHERE id =" + this.ID;
+
+        // JDBC objects
+        Connection connection = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            // 1. Establish a connection
+            connection = DriverManager.getConnection(dbURL, dbUsername, dbPassword);
+
+            // 2. Create a Statement object
+            statement = connection.createStatement();
+
+            // 3. Execute the SELECT query
+            resultSet = statement.executeQuery(query);
+
+            // 4. Process the ResultSet
+            while (resultSet.next()) {
+                // put all parameters for the vehicle into here using a
+                // similar manner
+                this.ID = resultSet.getInt("vehicle_id");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Handle SQL exceptions
+        } finally {
+            // 5. Close resources
+            try {
+                if (resultSet != null) resultSet.close();
+                if (statement != null) statement.close();
+                if (connection != null) connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
 
