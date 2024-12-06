@@ -4,7 +4,6 @@ import java.util.Base64;
 import org.mindrot.jbcrypt.BCrypt;
 import java.sql.*;
 import java.time.LocalDate;
-//test2
 public class Vehicle {
     private int ID;
     private String make;
