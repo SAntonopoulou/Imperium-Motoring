@@ -1,4 +1,3 @@
-import Vehicle_Enums.*;
 import java.security.SecureRandom;
 import java.util.Base64;
 import org.mindrot.jbcrypt.BCrypt;
@@ -11,16 +10,16 @@ public class Vehicle {
     private String model;
     private String variant;
     private LocalDate registration;
-    private FuelType fuelType;
-    private Category category;
-    private Drivetrain drivetrain;
+    private String fuelType;
+    private String category;
+    private String drivetrain;
     private int price;
     private int mileage;
     private int engineSize;
     private int enginePower;
-    private EnginePosition enginePosition;
-    private EngineType engineType;
-    private Transmission transmission;
+    private String enginePosition;
+    private String engineType;
+    private String transmission;
     private String colour;
     private String interiorColour;
     private String dbURL;
@@ -36,7 +35,7 @@ public class Vehicle {
         queryDatabase(this.dbURL, this.dbUsername, this.dbPassword);
     }
 
-    public Vehicle(int ID, String make, String model, String variant, LocalDate registration, FuelType fuelType, Category category, Drivetrain drivetrain, int price, int mileage, int engineSize, int enginePower, EnginePosition enginePosition, EngineType engineType, Transmission transmission, String colour, String interiorColour) {
+    public Vehicle(int ID, String make, String model, String variant, LocalDate registration, String fuelType, String category, String drivetrain, int price, int mileage, int engineSize, int enginePower, String enginePosition, String engineType, String transmission, String colour, String interiorColour) {
         this.ID = ID;
         this.make = make;
         this.model = model;
